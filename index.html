@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Flipper</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial;
+      }
+      .container {
+        background-color: white;
+        padding: 20px 30px;
+        border-radius: 10px;
+        text-align: center;
+      }
+      .back-color {
+        background-color: black;
+        padding: 20px 20px;
+        border-radius: 5px;
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .color {
+        font-weight: bold;
+      }
+      .btn,
+      .copy {
+        padding: 10px 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 6px;
+        background-color: black;
+        color: white;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background-color: #333;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p class="back-color">Background-color: <span class="color"></span></p>
+      <button class="btn">Change Color</button>
+      <button class="copy">Copy Color</button>
+    </div>
+    <script>
+      let arrayColor = [
+        "Red",
+        "Blue",
+        "Green",
+        "Yellow",
+        "Skyblue",
+        "Orange",
+        "Violet",
+        "Gray",
+        "Pink",
+        "White",
+      ];
+      const button = document.querySelector(".btn");
+      const text = document.querySelector(".color");
+      const copyBtn = document.querySelector(".copy");
+      button.addEventListener("click", () => {
+        let randomIndex = Math.floor(Math.random() * arrayColor.length);
+        let randomColor = arrayColor[randomIndex];
+        document.body.style.backgroundColor = randomColor;
+        text.innerText = randomColor;
+        text.style.color = randomColor;
+      });
+
+      copyBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText(text.innerText);
+        alert("Color Copied!");
+      });
+    </script>
+  </body>
+</html>
